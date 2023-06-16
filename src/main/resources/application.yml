@@ -6,7 +6,15 @@ spring:
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
       properties:
+        spring:
+          kafka:
+            consumer:
+              auto-commit-interval: 1000
+            listener:
+              ack-mode: manual_immediate
         specific.avro.reader: true
         schema:
           registry:
